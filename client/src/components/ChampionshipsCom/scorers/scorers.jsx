@@ -1,0 +1,39 @@
+import { useEffect, useState } from "react";
+import { useGetMatchsScorersChLMutation } from "../../../Redux/features/match/matchSlice";
+import TableScorers from "./tableScorers";
+import Loading from "../../Loading/Loading";
+
+export default function Scorers() {
+  const [selectedOption, setSelectedOption] = useState("2023");
+  const handleSelectChange = (e) => {
+    setSelectedOption(e.target.value);
+  };
+  const [getMatchsChLeById, { data, isLoading }] =
+    useGetMatchsScorersChLMutation();
+
+  useEffect(() => {
+    getMatchsChLeById(Number(selectedOption));
+  }, [getMatchsChLeById, selectedOption]);
+  console.log(data);
+
+  return (
+    <>
+      <div className="max-w-screen-xl mx-4 px-2 md:px-8">
+        <div className="grid justify-items-end m-4">
+          <select
+            className="block appearance-none w-aout bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+            value={selectedOption}
+            onChange={handleSelectChange}
+          >
+            <option value="2023">2023/2024</option>
+            <option value="2022">2022/2023</option>
+            <option value="2021">2021/2022</option>
+            <option value="2020">2020/2021</option>
+          </select>
+        </div>
+      </div>
+
+      <div>{isLoading ? <Loading /> : <TableScorers data={data} season={selectedOption} />}</div>
+    </>
+  );
+}

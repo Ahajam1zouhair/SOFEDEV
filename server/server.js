@@ -4,6 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import connectionDB from "./config/Db.js";
 import { handlerError, notFound } from "./middlewares/handlerError.js";
+import routeMatch from "./routers/matchRouter.js";
 
 dotenv.config();
 
@@ -20,7 +21,7 @@ connectionDB();
 app.use(express.json());
 
 // Router
-
+app.use("/api/match", routeMatch);
 // Page Not Found
 app.use(notFound);
 
