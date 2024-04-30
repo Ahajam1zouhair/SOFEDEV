@@ -62,7 +62,7 @@ export default function NavBar() {
       isDrapdown: true,
       navs: dropdownNavs,
     },
-    { title: "Clubs", path: "/Clubs", isDrapdown: false },
+    { title: "Clubs", path: "/clubs", isDrapdown: false },
     { title: "Players", path: "/players", isDrapdown: false },
   ];
 
@@ -83,7 +83,7 @@ export default function NavBar() {
   return (
     <>
       <nav
-         className={`relative z-20 bg-white w-full md:static md:text-sm md:border-none ${
+         className={`relative z-30 bg-white w-full md:static md:text-sm md:border-none ${
           state ? "fixed top-0 left-0 shadow-lg rounded-b-xl md:shadow-none" : ""
         }`}
       >
@@ -92,7 +92,7 @@ export default function NavBar() {
             <a href="javascript:void(0)">
               <img
                 src="https://www.cisex.org/sites/default/files/2023-02/Sofascore-01-1.png"
-                width={100}
+                width={75}
                 height={50}
                 alt="Float UI logo"
               />

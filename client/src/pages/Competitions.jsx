@@ -33,10 +33,6 @@ export default function Competitions() {
       label: "Scorers",
       path: `/competitions/${competitions}/scorers`,
     },
-    {
-      label: "Palmares",
-      path: `/competitions/${competitions}/palmares`,
-    },
   ];
 
   const handleItemClick = (idx, path) => {
