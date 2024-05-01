@@ -15,10 +15,20 @@ export const matchApiSlice = apiMatch.injectEndpoints({
         method: "GET",
       }),
     }),
+    getMatchesTeamsById: build.mutation({
+      query: ({ id, status }) => ({
+        url: `https://api.football-data.org/v4/teams/${id}/matches?status=${status}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useGetTeamsMutation, useGetTeamsByIdMutation } = matchApiSlice;
+export const {
+  useGetTeamsMutation,
+  useGetTeamsByIdMutation,
+  useGetMatchesTeamsByIdMutation,
+} = matchApiSlice;
 
 // winner
 // http://api.football-data.org/v4/competitions/PL/?season=2023

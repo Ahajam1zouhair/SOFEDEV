@@ -1,5 +1,9 @@
+import { useParams } from "react-router-dom";
+
 /* eslint-disable react/prop-types */
 export default function TableStandingCP({ data }) {
+  const { id } = useParams();
+  console.log(id);
   console.log(data);
   const borderColor = (id) => {
     switch (id) {
@@ -21,7 +25,7 @@ export default function TableStandingCP({ data }) {
 
   return (
     <div className="max-w-screen-xl mx-auto md:px-12">
-      <div className="mt-12 relative h-max overflow-auto">
+      <div className="mt-2 relative h-max overflow-auto">
         {data &&
           data.standings &&
           data.standings.map((group, Idx) => (
@@ -66,7 +70,10 @@ export default function TableStandingCP({ data }) {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 border border-slate-300">
                   {group.table.map((item, idx) => (
-                    <tr key={idx}>
+                    <tr
+                      key={idx}
+                      className={id == item.team.id ? "bg-gray-300" : ""}
+                    >
                       <td
                         className={`px-3 py-2 whitespace-nowrap text-xs md:text-sm font-medium text-gray-900 ${borderColor(
                           item.position
@@ -74,10 +81,10 @@ export default function TableStandingCP({ data }) {
                       >
                         {item.position}
                       </td>
-                      <td className="px-3 py-2 whitespace-nowrap text-xs md:text-sm font-medium  ">
+                      <td className="px-3 py-2 whitespace-nowrap text-xs md:text-sm font-medium flex items-center ">
                         <img
                           src={item.team.crest}
-                          className="w-6 h-6 md:w-8 md:h-8"
+                          className="w-6 h-6 md:w-8 md:h-8 mr-2"
                           alt=""
                         />
                         <span>{item.team.shortName}</span>

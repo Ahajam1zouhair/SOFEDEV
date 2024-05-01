@@ -58,7 +58,7 @@ export default function NavBar() {
     { title: "Matches Live", path: "/matches", isDrapdown: false },
     { title: "New", path: "/new", isDrapdown: false },
     {
-      title: "Competitions", 
+      title: "Competitions",
       isDrapdown: true,
       navs: dropdownNavs,
     },
@@ -74,17 +74,19 @@ export default function NavBar() {
     };
   }, []);
 
-  const handelNavigate = (path)=>{
-    navigate(path)
+  const handelNavigate = (path) => {
+    navigate(path);
     setDrapdownState({ isActive: false, idx: null });
     setDrapdownState({ isActive: true, idx: null });
-    setState(!state)
-  }
+    setState(!state);
+  };
   return (
     <>
       <nav
-         className={`relative z-30 bg-white w-full md:static md:text-sm md:border-none ${
-          state ? "fixed top-0 left-0 shadow-lg rounded-b-xl md:shadow-none" : ""
+        className={`relative z-30 bg-white w-full md:static md:text-sm md:border-none ${
+          state
+            ? "fixed top-0 left-0 shadow-lg rounded-b-xl md:shadow-none"
+            : ""
         }`}
       >
         <div className="items-center gap-x-14 px-4 max-w-screen-xl mx-auto md:flex md:px-8">
@@ -182,7 +184,7 @@ export default function NavBar() {
                       </button>
                     ) : (
                       <a
-                        href={item.path}
+                        onClick={() => handelNavigate(item.path)}
                         className="block text-gray-800 text-xl hover:text-indigo-600"
                       >
                         {item.title}
@@ -200,7 +202,9 @@ export default function NavBar() {
                                   <li key={idx} className="group">
                                     <a
                                       className="flex gap-3 items-center"
-                                      onClick={() => handelNavigate(navItem.path)}
+                                      onClick={() =>
+                                        handelNavigate(navItem.path)
+                                      }
                                     >
                                       <div className="w-12 h-12 rounded-full  text-indigo-600 flex items-center justify-center duration-150  group-hover:text-white md:w-14 md:h-14">
                                         <img

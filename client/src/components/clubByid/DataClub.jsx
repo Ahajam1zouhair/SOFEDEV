@@ -17,7 +17,7 @@ export default function DataClub({ data }) {
           </div>
           <div className="mt-3 text-gray-600 dark:text-gray-400">
             <p className="font-semibold text-gray-700 mb-4">
-              founded :{" "}
+              founded :
               <span className="text-gray-800 text-xl ml-1">{data.founded}</span>
             </p>
             <p className="font-semibold text-gray-700 mb-4">

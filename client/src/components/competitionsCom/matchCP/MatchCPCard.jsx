@@ -37,77 +37,79 @@ function MatchCPCard({ data }) {
   }
 
   return (
-    <div>
-      <div className="flex flex-wrap justify-center">
-        {data && data.matches && (
-          <>
-            {data.matches.map((item) => (
-              <div
-                key={item.id}
-                className="w-full sm:w-5/12 border-solid border-2 border-indigo-100 m-2"
-              >
-                <div className="flex items-center justify-between mb-2 m-2">
-                  <div className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900 ">
-                    <div className="">
-                      <img
-                        src={item.homeTeam.crest}
-                        className="w-8 h-8 md:w-16 md:h-16"
-                        alt=""
-                      />
-                    </div>
-                    <p className=" text-xs md:text-lg ">
-                      {item.homeTeam.shortName}
-                    </p>
+    <div className="flex flex-wrap justify-center">
+      {data && data.matches && (
+        <>
+          {data.matches.map((item) => (
+            <div
+              key={item.id}
+              className="w-full sm:w-5/12 border-solid border-2 border-indigo-100 m-2"
+            >
+              <div>
+                <span className="text-slate-600 ml-4">
+                  {convertToLocaleDateTime(item.utcDate).date}
+                </span>
+              </div>
+              <div className="flex  justify-between mb-2 m-2">
+                <div className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900 m-2 ">
+                  <div className="flex justify-center">
+                    <img
+                      src={item.homeTeam.crest}
+                      className="w-10 h-10 md:w-10 md:h-10"
+                      alt=""
+                    />
                   </div>
-                  <div className=" block font-sans text-base antialiased font-medium leading-relaxed grid place-content-center">
-                    <p className=" text-xs md:text-lg font-sans mb-1 ">
-                      Day {item.matchday}
+                  <p className=" text-xs md:text-sm ">
+                    {item.homeTeam.shortName}
+                  </p>
+                </div>
+                <div className=" block font-sans text-base antialiased font-medium leading-relaxed">
+                  <p className=" text-xs md:text-sm font-sans mb-1 grid place-content-center ">
+                    {item?.group ? (
+                      <span>{item?.group}</span>
+                    ) : (
+                      <span>{item.competition.name}</span>
+                    )}
+                  </p>
+                  <p className=" text-xs md:text-sm font-sans mb-1 grid place-content-center ">
+                    Day {item.matchday}
+                  </p>
+                  {item.status === "FINISHED" ? (
+                    <p className="text-sm md:text-xl font-sans text-gray-700 grid place-content-center ">
+                      <span className="text-slate-500">
+                        {item.score.fullTime.home} : {item.score.fullTime.away}
+                      </span>
                     </p>
-                    {item.status === "FINISHED" ? (
-                      <p className="text-xs md:text-lg font-sans text-gray-700 ">
-                        <span className="mr-2 text-slate-500">
-                          Final result
-                        </span>
-                        <span>
-                          {item.score.fullTime.home} :{item.score.fullTime.away}
+                  ) : (
+                    <>
+                      <p className="text-xs md:text-sm font-sans text-gray-700 grid place-content-center">
+                        <span className="text-slate-600">
+                          In {countDaysSince(item.utcDate)} days
                         </span>
                       </p>
-                    ) : (
-                      <>
-                        <p className="text-xs md:text-lg font-sans text-gray-700">
-                          <span className="text-slate-600">
-                            In {countDaysSince(item.utcDate)} days
-                          </span>
-                        </p>
-                        <p className="text-xs md:text-lg font-sans text-gray-700">
-                          <span className="text-slate-600">
-                            {convertToLocaleDateTime(item.utcDate).date}
-                          </span>
-                        </p>
-                        <p className="text-xs md:text-lg font-sans grid place-content-center">
-                          {convertToLocaleDateTime(item.utcDate).time}
-                        </p>
-                      </>
-                    )}
+                      <p className="text-xs md:text-sm font-sans grid place-content-center">
+                        {convertToLocaleDateTime(item.utcDate).time}
+                      </p>
+                    </>
+                  )}
+                </div>
+                <div className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900 m-2 ">
+                  <div className="flex justify-center">
+                    <img
+                      src={item.awayTeam.crest}
+                      className="w-10 h-10 md:w-10 md:h-10 "
+                      alt=""
+                    />
                   </div>
-                  <div className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900 m-2 ">
-                    <div className="flex justify-center">
-                      <img
-                        src={item.awayTeam.crest}
-                        className="w-8 h-8 md:w-16 md:h-16 "
-                        alt=""
-                      />
-                    </div>
-                    <p className="text-xs md:text-lg">
-                      {item.awayTeam.shortName}
-                    </p>
-                  </div>
+                  <p className="text-xs md:text-sm">
+                    {item.awayTeam.shortName}
+                  </p>
                 </div>
               </div>
-            ))}
-          </>
-        )}
-      </div>
+            </div>
+          ))}
+        </>
+      )}
     </div>
   );
 }

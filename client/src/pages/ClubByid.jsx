@@ -6,7 +6,6 @@ import TabsCluBbyId from "../components/clubByid/TabsCluBbyId";
 
 export default function ClubByid() {
   const { id } = useParams();
-  console.log(id);
   const [getTeamsById, { data }] = useGetTeamsByIdMutation();
   useEffect(() => {
     if (id) {
@@ -17,7 +16,6 @@ export default function ClubByid() {
     <div className="max-w-screen-xl mx-auto  md:px-16">
       <HeaderClub data={data} />
       <TabsCluBbyId data={data} />
-      
     </div>
   );
 }

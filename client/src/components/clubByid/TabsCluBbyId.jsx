@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import * as Tabs from "@radix-ui/react-tabs";
 import DataClub from "./DataClub";
+import MatchClub from "./matchClub";
+import StandingClub from "./StandingClub";
 
 export default function TabsCluBbyId({ data }) {
   const tabItems = [
@@ -9,13 +11,19 @@ export default function TabsCluBbyId({ data }) {
       name: data?.name,
     },
     {
-      name: "BL1",
-      title: "Matchs",
+      name: "Upcoming  Matches",
+      component: <MatchClub status={"SCHEDULED"} />,
     },
-    // {
-    //   name: "BL1",
-    //   title: "squad",
-    // },
+    {
+      name: "Results",
+      component: <MatchClub status={"FINISHED"} />,
+    },
+    {
+      name: "Standing",
+      component: data?.runningCompetitions ? (
+        <StandingClub competitions={data.runningCompetitions[0].code} />
+      ) : null,
+    },
     // {
     //   name: "BL1",
     //   title: "running Competitions",
@@ -25,7 +33,7 @@ export default function TabsCluBbyId({ data }) {
   return (
     <Tabs.Root
       className="max-w-screen-xl mx-auto px-4 md:px-8"
-      defaultValue="Real Madrid"
+      defaultValue="Upcoming  Matches"
     >
       <Tabs.List
         className="w-full border-b flex items-center gap-x-3 overflow-x-auto text-sm"

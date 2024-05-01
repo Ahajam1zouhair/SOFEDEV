@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 export default function HeaderClub({ data }) {
-
   return (
     <div className="py-7">
       <div className="max-w-screen-xl mx-auto px-4 md:px-8">

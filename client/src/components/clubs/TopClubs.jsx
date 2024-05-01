@@ -39,16 +39,25 @@ export default function TopClubs() {
     },
   ];
   return (
-    <div className="md:p-6">
+    <div className="p-2 md:p-6">
+      <div className="max-w-xl mb-4">
+        <h3 className="text-xl  md:text-3xl">TOP CLUBS</h3>
+      </div>
       <div className="grid  gap-y-4  grid-cols-4 sm:grid-cols-8">
         {tabTopClubs.map((item, idx) => (
-          <Link key={idx} className="text-center" to={`/clubs/${item.name}/${item.id}`}>
+          <Link
+            key={idx}
+            className="text-center"
+            to={`/clubs/${item.name}/${item.id}`}
+          >
             <img
               src={item.src}
               alt={item.name}
               className="w-6 h-6 md:w-14 md:h-14 mx-auto"
             />
-            <p className="text-gray-800 text-xs md:text-sm font-bold mb-1">{item.name}</p>
+            <p className="text-gray-800 text-xs md:text-sm font-bold mb-1">
+              {item.name}
+            </p>
           </Link>
         ))}
       </div>

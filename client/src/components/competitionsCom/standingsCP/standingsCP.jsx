@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect } from "react";
 import { useGetStandingsByCPMutation } from "../../../Redux/features/match/matchSlice";
 import { useParams } from "react-router-dom";
