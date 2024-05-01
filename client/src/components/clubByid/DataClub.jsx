@@ -15,17 +15,10 @@ export default function DataClub({ data }) {
               className="w-10 h-10 ml-2"
             />
           </div>
-<<<<<<< HEAD
-          <div className="mt-3 text-gray-600 dark:text-gray-400">
-            <p className="font-semibold text-gray-700 mb-4">
-              founded :
-              <span className="text-gray-800 text-xl ml-1">{data.founded}</span>
-=======
           <div className="text-black-900">
             <p className="mb-4">
               <span className="font-semibold">Founded:</span>{" "}
               <span>{data.founded}</span>
->>>>>>> 64869dc4b5f142a19c28eef48535deec785afea6
             </p>
             <p className="mb-4">
               <span className="font-semibold">Club Colors:</span>{" "}
