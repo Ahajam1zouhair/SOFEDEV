@@ -81,7 +81,7 @@ export default function MatchClub({ status }) {
                       {item.status === "FINISHED" ? (
                         <p className="text-sm md:text-xl font-sans text-gray-700 grid place-content-center ">
                           <span className="text-slate-500">
-                            {item.score.fullTime.home} :
+                            {item.score.fullTime.home} :{" "}
                             {item.score.fullTime.away}
                           </span>
                         </p>
@@ -90,11 +90,6 @@ export default function MatchClub({ status }) {
                           <p className="text-xs md:text-sm font-sans text-gray-700 grid place-content-center">
                             <span className="text-slate-600">
                               In {countDaysSince(item.utcDate)} days
-                            </span>
-                          </p>
-                          <p className="text-xs md:text-sm font-sans text-gray-700 grid place-content-center">
-                            <span className="text-slate-600">
-                              {convertToLocaleDateTime(item.utcDate).date}
                             </span>
                           </p>
                           <p className="text-xs md:text-sm font-sans grid place-content-center">

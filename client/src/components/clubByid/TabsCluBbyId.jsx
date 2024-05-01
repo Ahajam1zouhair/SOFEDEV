@@ -3,12 +3,13 @@ import * as Tabs from "@radix-ui/react-tabs";
 import DataClub from "./DataClub";
 import MatchClub from "./matchClub";
 import StandingClub from "./StandingClub";
+import TableTeam from "./tableTeam";
 
 export default function TabsCluBbyId({ data }) {
   const tabItems = [
     {
-      component: <DataClub data={data} />,
       name: data?.name,
+      component: <DataClub data={data} />,
     },
     {
       name: "Upcoming  Matches",
@@ -24,10 +25,10 @@ export default function TabsCluBbyId({ data }) {
         <StandingClub competitions={data.runningCompetitions[0].code} />
       ) : null,
     },
-    // {
-    //   name: "BL1",
-    //   title: "running Competitions",
-    // },
+    {
+      name: "team",
+      component: <TableTeam data={data} />,
+    },
   ];
 
   return (
