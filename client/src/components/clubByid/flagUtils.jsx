@@ -52,6 +52,7 @@ export const getFlagImageUrl = (nationality) => {
         East_Timor: "https://upload.wikimedia.org/wikipedia/commons/2/26/Flag_of_East_Timor.svg",
         Ecuador: "https://upload.wikimedia.org/wikipedia/commons/e/e8/Flag_of_Ecuador.svg",
         Egypt: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Egypt.svg",
+        England:"https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/1024px-Flag_of_England.svg.png",
         El_Salvador: "https://upload.wikimedia.org/wikipedia/commons/3/34/Flag_of_El_Salvador.svg",
         Equatorial_Guinea: "https://upload.wikimedia.org/wikipedia/commons/3/31/Flag_of_Equatorial_Guinea.svg",
         Eritrea: "https://upload.wikimedia.org/wikipedia/commons/2/29/Flag_of_Eritrea.svg",
