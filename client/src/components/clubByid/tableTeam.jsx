@@ -22,7 +22,10 @@ export default function TableTeam({ data }) {
                 Last Name: <span className="text-lg text-gray-600 font-semibold">{data.coach.lastName}</span>
               </p>
               <p className="text-gray-900 font-medium">
-                Nationality: <span className="text-lg text-gray-600 font-semibold">{data.coach.nationality}</span>
+                Nationality:<span className="text-lg text-gray-600 font-semibold">{data.coach.nationality}</span>
+                {data.coach.nationality && (
+                  <img src={getFlagImageUrl(data.coach.nationality)} alt={data.coach.nationality} className="h-5 w-5 ml-2" />
+                )}
               </p>
               <p className="text-gray-900 font-medium">
                 Date of Birth: <span className="text-lg text-gray-600 font-semibold">{data.coach.dateOfBirth}</span>
