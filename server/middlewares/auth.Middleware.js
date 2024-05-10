@@ -1,4 +1,4 @@
-import User from "../models/userModel";
+import User from "../models/userModel.js";
 import asyncHandler from "express-async-handler";
 import jwt from "jsonwebtoken";
 
@@ -22,13 +22,24 @@ export const verifyToken = asyncHandler(async (req, res, next) => {
       }
       next();
     } catch (error) {
-      res.status(401).json({ message: TOKEN_FAILED_ERROR });
-      throw new Error(TOKEN_FAILED_ERROR);
+      res.status(401).json({ message: error.message || TOKEN_FAILED_ERROR });
+      throw new Error(error.message || TOKEN_FAILED_ERROR);
     }
-  }
-
-  if (!token) {
+  } else {
     res.status(401).json({ message: UNAUTHORIZED_ERROR });
     throw new Error(UNAUTHORIZED_ERROR);
   }
+});
+
+// Verify Token & Only User himself
+export const verifyTokenAndOnlyUser = asyncHandler(async (req, res, next) => {
+  await verifyToken(req, res, () => {
+    if (req.user.id === req.params.id) {
+      next();
+    } else {
+      return res.status(403).json({
+        error: "Not allowed, only user himself",
+      });
+    }
+  });
 });

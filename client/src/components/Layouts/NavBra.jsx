@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import * as Avatar from "@radix-ui/react-avatar";
 
 const dropdownNavs = [
   {
@@ -80,6 +81,10 @@ export default function NavBar() {
     setDrapdownState({ isActive: true, idx: null });
     setState(!state);
   };
+
+  const user = localStorage.getItem("user");
+  const name = JSON.parse(user)?.name;
+  const url = JSON.parse(user)?.url;
   return (
     <>
       <nav
@@ -232,24 +237,56 @@ export default function NavBar() {
                   </li>
                 );
               })}
-              <div className="flex-1 items-center justify-end gap-x-6 space-y-3 md:flex md:space-y-0">
-                <li>
-                  <a
-                    href="javascript:void(0)"
-                    className="block py-3 text-center text-gray-700 hover:text-indigo-600 border rounded-lg md:border-none"
-                  >
-                    Log in
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="javascript:void(0)"
-                    className="block py-3 px-4 font-medium text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline"
-                  >
-                    Sign in
-                  </a>
-                </li>
-              </div>
+
+              {name ? (
+                <div className="flex-1 items-center justify-end gap-x-6 space-y-3 md:flex md:space-y-0">
+                  <button>
+                    <Avatar.Root className="flex items-center gap-3">
+                      <Avatar.Image
+                        src={url}
+                        className="w-12 h-12 rounded-full object-cover"
+                      />
+                      <Avatar.Fallback
+                        delayMs={600}
+                        className="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center text-sm"
+                      >
+                        {name}
+                      </Avatar.Fallback>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        className="w-5 h-5 text-gray-400"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </Avatar.Root>
+                  </button>
+                </div>
+              ) : (
+                <div className="flex-1 items-center justify-end gap-x-6 space-y-3 md:flex md:space-y-0">
+                  <li>
+                    <Link
+                      to="/login"
+                      className="block py-3 text-center text-gray-700 hover:text-indigo-600 border rounded-lg md:border-none"
+                    >
+                      Log in
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/register"
+                      className="block py-3 px-4 font-medium text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline"
+                    >
+                      Sign in
+                    </Link>
+                  </li>
+                </div>
+              )}
             </ul>
           </div>
         </div>

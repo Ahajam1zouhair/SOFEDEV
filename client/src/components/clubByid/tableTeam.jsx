@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { getFlagImageUrl } from "./flagUtils";
 
 export default function TableTeam({ data }) {

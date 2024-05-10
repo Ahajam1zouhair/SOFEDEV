@@ -12,6 +12,9 @@ import ScorersCL from "../components/competitionsCom/scorersCP/ScorersCp";
 import Footer from "../components/Layouts/Footer";
 import Clubs from "../pages/Clubs";
 import ClubByid from "../pages/ClubByid";
+import Register from "../pages/auth/register";
+import New from "../pages/New";
+import Login from "../pages/auth/login";
 
 export default function Router() {
   return (
@@ -25,7 +28,7 @@ export default function Router() {
           <Route path="scorersCL" element={<Scorers />} />
           <Route path="palmaresCL" element={<Palmares />} />
         </Route>
-        <Route path="/competitions/:competitions" element={<Competitions />} >
+        <Route path="/competitions/:competitions" element={<Competitions />}>
           <Route index element={<MatchsCP />} />
           <Route path="match" element={<MatchsCP />} />
           <Route path="standings" element={<StandingsCP />} />
@@ -33,6 +36,9 @@ export default function Router() {
         </Route>
         <Route path="/clubs" element={<Clubs />} />
         <Route path="/clubs/:name/:id" element={<ClubByid />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/new" element={<New />} />
       </Routes>
       <Footer />
     </BrowserRouter>

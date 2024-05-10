@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-import Match from "../models/matchModel";
+import Match from "../models/matchModel.js";
 
 // @desc     create   Match
 // @route   POST /api/Match
