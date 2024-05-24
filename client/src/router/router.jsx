@@ -21,6 +21,7 @@ import { ProtectedRoute } from "./PrivateRouterAdmin";
 import MatchsAll from "../pages/Admin/Matchs";
 import UpdateMatch from "../pages/Admin/Update";
 import Matches from "../pages/Matches";
+import Profile from "../pages/profile";
 
 export default function Router() {
   return (
@@ -49,6 +50,7 @@ export default function Router() {
           <Route index element={<MatchsAll />} />
           <Route path="create" element={<CreateMatch />} />
           <Route path="update/:id" element={<UpdateMatch />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
         <Route element={<ProtectedRoute />}>
           <Route path="/register" element={<Register />} />
