@@ -43,3 +43,16 @@ export const verifyTokenAndOnlyUser = asyncHandler(async (req, res, next) => {
     }
   });
 });
+
+
+export const verifyTokenAndAdmin = asyncHandler(async (req, res, next) => {
+  await verifyToken(req, res, () => {
+    if (req.user.isAdmin === true) {
+      next();
+    } else {
+      return res.status(403).json({
+        error: "Not allowed, you are not allowed to",
+      });
+    }
+  });
+});

@@ -44,6 +44,7 @@ export const registerUser = asyncHandler(async (req, res) => {
     id: result._id,
     name: result.name,
     email: result.email,
+    isAdmin: result.isAdmin,
   });
 });
 
@@ -74,7 +75,8 @@ export const loginUser = asyncHandler(async (req, res) => {
   res.status(200).json({
     name: user.name,
     url: user.image_profile.url,
-    id : user._id,
+    id: user._id,
+    isAdmin: user.isAdmin,
     token,
   });
 });
@@ -131,6 +133,5 @@ export const profilePhoto = asyncHandler(async (req, res) => {
     profilePhoto: { url: result.secure_url, publicId: result.public_id },
   });
   // 8. Delete the file from the server
-  fs.unlinkSync(imagePath)
- 
+  fs.unlinkSync(imagePath);
 });

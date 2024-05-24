@@ -62,12 +62,24 @@ export default function Championships() {
                           {item.position}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm md:text-lg font-medium text-gray-900 border border-slate-300">
-                          <img
+                          {/* <img
                             src={item.team.crest}
                             className="w-8 h-8 md:w-12 md:h-12"
                             alt=""
                           />
-                          <span className="m-1">{item.team.tla}</span>
+                          <span className="m-1">{item.team.tla}</span> */}
+                           <div className=" flex flex-col items-center">
+                          <div className="team-logo w-14  h-14  flex items-center justify-center rounded-full">
+                            <img
+                              src={item.team.crest}
+                              alt={item.team.crest}
+                              className="w-8 md:w-10"
+                            />
+                          </div>
+                          <h2 className="text-xs md:text-mx mt-2 font-semibold">
+                            {item.team.tla}
+                          </h2>
+                        </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border border-slate-300">
                           {item.playedGames}

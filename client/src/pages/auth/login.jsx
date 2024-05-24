@@ -2,21 +2,43 @@ import { useState } from "react";
 import FormLogin from "../../components/auth/formLogin";
 import { useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../Redux/features/user/authApiSlice";
+import { userSchemaLogin } from "../../Requests/userRequest";
 
 export default function Login() {
   const [userInput, setUserInput] = useState({
     email: "",
     password: "",
   });
+  const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
   const [login, { data, isLoading, isError, error }] = useLoginMutation();
+
+  // validate values
+  const validateValues = async () => {
+    try {
+      await userSchemaLogin.validate(userInput, { abortEarly: false });
+      setErrors({});
+      return true;
+    } catch (error) {
+      const newErrors = error.inner.reduce((acc, cur) => {
+        acc[cur.path] = cur.message;
+        return acc;
+      }, {});
+      setErrors(newErrors);
+      return false;
+    }
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      await login({
-        email: userInput.email,
-        password: userInput.password,
-      });
+      const isValid = await validateValues();
+      if (isValid) {
+        await login({
+          email: userInput.email,
+          password: userInput.password,
+        });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -41,6 +63,7 @@ export default function Login() {
         isLoading={isLoading}
         isError={isError}
         error={error}
+        errors={errors}
       />
     </div>
   );

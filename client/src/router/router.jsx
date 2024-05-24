@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import NavBar from "../components/Layouts/NavBra";
 import StandingsCL from "../components/ChampionshipsCom/standingsCL";
 import Championships from "../pages/Championships";
 import Matchs from "../components/ChampionshipsCom/match/Matchs";
@@ -9,38 +8,53 @@ import Competitions from "../pages/Competitions";
 import MatchsCP from "../components/competitionsCom/matchCP/MatchsCP";
 import StandingsCP from "../components/competitionsCom/standingsCP/standingsCP";
 import ScorersCL from "../components/competitionsCom/scorersCP/ScorersCp";
-import Footer from "../components/Layouts/Footer";
 import Clubs from "../pages/Clubs";
 import ClubByid from "../pages/ClubByid";
 import Register from "../pages/auth/register";
 import New from "../pages/New";
 import Login from "../pages/auth/login";
+import CreateMatch from "../pages/Admin/CreateMatch";
+// import Update from "../pages/Admin/update";
+import AdminLayout from "../Layouts/AdminLayout";
+import UserLayout from "../Layouts/UserLayout";
+import { ProtectedRoute } from "./PrivateRouterAdmin";
+import MatchsAll from "../pages/Admin/Matchs";
+import UpdateMatch from "../pages/Admin/Update";
+import Matches from "../pages/Matches";
 
 export default function Router() {
   return (
     <BrowserRouter>
-      <NavBar />
       <Routes>
-        <Route path="/championships" element={<Championships />}>
-          <Route index element={<Matchs />} />
-          <Route path="standingsCL" element={<StandingsCL />} />
-          <Route path="matchCL" element={<Matchs />} />
-          <Route path="scorersCL" element={<Scorers />} />
-          <Route path="palmaresCL" element={<Palmares />} />
+        <Route path="/" element={<UserLayout />}>
+        <Route index element={<Matches />} />
+          <Route path="/championships" element={<Championships />}>
+            <Route index element={<Matchs />} />
+            <Route path="standingsCL" element={<StandingsCL />} />
+            <Route path="matchCL" element={<Matchs />} />
+            <Route path="scorersCL" element={<Scorers />} />
+            <Route path="palmaresCL" element={<Palmares />} />
+          </Route>
+          <Route path="/competitions/:competitions" element={<Competitions />}>
+            <Route index element={<MatchsCP />} />
+            <Route path="match" element={<MatchsCP />} />
+            <Route path="standings" element={<StandingsCP />} />
+            <Route path="scorers" element={<ScorersCL />} />
+          </Route>
+          <Route path="/clubs" element={<Clubs />} />
+          <Route path="/clubs/:name/:id" element={<ClubByid />} />
+          <Route path="/new" element={<New />} />
         </Route>
-        <Route path="/competitions/:competitions" element={<Competitions />}>
-          <Route index element={<MatchsCP />} />
-          <Route path="match" element={<MatchsCP />} />
-          <Route path="standings" element={<StandingsCP />} />
-          <Route path="scorers" element={<ScorersCL />} />
+        <Route path="/admin/*" element={<AdminLayout />}>
+          <Route index element={<MatchsAll />} />
+          <Route path="create" element={<CreateMatch />} />
+          <Route path="update/:id" element={<UpdateMatch />} />
         </Route>
-        <Route path="/clubs" element={<Clubs />} />
-        <Route path="/clubs/:name/:id" element={<ClubByid />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/new" element={<New />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} /> 
+        </Route>
       </Routes>
-      <Footer />
     </BrowserRouter>
   );
 }

@@ -1,6 +1,24 @@
 import mongoose, { Schema } from "mongoose";
 
 const matchSchema = new Schema({
+  competition: {
+    name: {
+      type: String,
+      required: true,
+    },
+    code: {
+      type: String,
+      required: true,
+    },
+    emblem: {
+      type: String,
+      required: true,
+    },
+  },
+  venue: {
+    type: String,
+    required: true,
+  },
   teams: {
     home: {
       name: {
@@ -11,6 +29,10 @@ const matchSchema = new Schema({
         type: String,
         required: true,
       },
+      id: {
+        type: Number,
+        required: true,
+      },
     },
     away: {
       name: {
@@ -21,11 +43,11 @@ const matchSchema = new Schema({
         type: String,
         required: true,
       },
+      id: {
+        type: Number,
+        required: true,
+      },
     },
-  },
-  venue: {
-    type: String,
-    required: true,
   },
   status: {
     type: String,
@@ -35,52 +57,30 @@ const matchSchema = new Schema({
     home: {
       type: Number,
       default: 0,
-      gols: [
-        {
-          namePlayer: {
-            type: String,
-            required: true,
-          },
-          ScorerMinute: {
-            type: Number,
-            required: true,
-          },
-        },
-      ],
     },
     away: {
       type: Number,
       default: 0,
-      gols: [
-        {
-          namePlayer: {
-            type: String,
-            required: true,
-          },
-          ScorerMinute: {
-            type: Number,
-            required: true,
-          },
-        },
-      ],
-    },
-  },
-  event: {
-    name: {
-      type: String,
-      required: true,
-    },
-    image: {
-      type: String,
-      required: true,
     },
   },
   date: {
-    type: Date,
+    utcDate: {
+      type: String,
+      required: true,
+    },
+    time: {
+      type: String,
+      required: true,
+    },
   },
-  isVarcheck: {
-    type: Boolean,
-    default: false,
+  varcheck: {
+    isVarcheck: {
+      type: Boolean,
+      default: false,
+    },
+    status: {
+      type: String,
+    },
   },
   isValid: {
     type: Boolean,

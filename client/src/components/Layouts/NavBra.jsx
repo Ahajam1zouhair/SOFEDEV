@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import * as Avatar from "@radix-ui/react-avatar";
+import { Logout } from "../../router/PrivateRouterAdmin";
 
 const dropdownNavs = [
   {
@@ -53,10 +55,11 @@ export default function NavBar() {
     isActive: false,
     idx: null,
   });
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   // Replace javascript:void(0) paths with your paths
   const navigation = [
-    { title: "Matches Live", path: "/matches", isDrapdown: false },
+    { title: "Matches Live", path: "/", isDrapdown: false },
     { title: "New", path: "/new", isDrapdown: false },
     {
       title: "Competitions",
@@ -81,14 +84,16 @@ export default function NavBar() {
     setDrapdownState({ isActive: true, idx: null });
     setState(!state);
   };
-
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
   const user = localStorage.getItem("user");
   const name = JSON.parse(user)?.name;
   const url = JSON.parse(user)?.url;
   return (
     <>
       <nav
-        className={`relative z-30 bg-white w-full md:static md:text-sm md:border-none ${
+        className={`relative z-30 bg-white shadow-md w-full md:static md:text-sm md:border-none  ${
           state
             ? "fixed top-0 left-0 shadow-lg rounded-b-xl md:shadow-none"
             : ""
@@ -239,33 +244,46 @@ export default function NavBar() {
               })}
 
               {name ? (
-                <div className="flex-1 items-center justify-end gap-x-6 space-y-3 md:flex md:space-y-0">
-                  <button>
-                    <Avatar.Root className="flex items-center gap-3">
-                      <Avatar.Image
-                        src={url}
-                        className="w-12 h-12 rounded-full object-cover"
-                      />
-                      <Avatar.Fallback
-                        delayMs={600}
-                        className="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center text-sm"
-                      >
-                        {name}
-                      </Avatar.Fallback>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        className="w-5 h-5 text-gray-400"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                          clipRule="evenodd"
+                <div className="flex-1 flex items-center  space-x-2  flex-1 items-center justify-end gap-x-6 space-y-3 md:flex md:space-y-0">
+                  <DropdownMenu.Root>
+                    <DropdownMenu.Trigger className="outline-none">
+                      <Avatar.Root>
+                        <Avatar.Image
+                          className="w-12 h-12 flex items-center gap-x-4 cursor-pointer rounded-full ring-offset-2 ring-gray-800 focus:ring-2 duration-150"
+                          src={url}
+                          alt="vienna"
                         />
-                      </svg>
-                    </Avatar.Root>
-                  </button>
+                        <span className="block text-gray-500/80">{name}</span>
+                      </Avatar.Root>
+                    </DropdownMenu.Trigger>
+
+                    <li>
+                      <Link
+                        className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                        onClick={Logout}
+                        to="/"
+                      >
+                        <svg
+                          className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 18 16"
+                        >
+                          <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"
+                          />
+                        </svg>
+                        <span className="flex-1 ms-3 whitespace-nowrap">
+                          Logout
+                        </span>
+                      </Link>
+                    </li>
+                  </DropdownMenu.Root>
                 </div>
               ) : (
                 <div className="flex-1 items-center justify-end gap-x-6 space-y-3 md:flex md:space-y-0">

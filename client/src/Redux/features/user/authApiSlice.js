@@ -2,6 +2,7 @@ import { apiAuth } from "../../Api/apiAuth";
 
 export const authApiSlice = apiAuth.injectEndpoints({
   endpoints: (build) => ({
+    
     register: build.mutation({
       query: (date) => ({
         url: "api/user/register",
@@ -16,7 +17,9 @@ export const authApiSlice = apiAuth.injectEndpoints({
         body: date,
       }),
     }),
+    
   }),
 });
 
-export const { useRegisterMutation, useLoginMutation } = authApiSlice;
+export const { useRegisterMutation, useLoginMutation } =
+  authApiSlice;
