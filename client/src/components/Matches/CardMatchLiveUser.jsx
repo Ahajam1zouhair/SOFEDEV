@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 /* eslint-disable react/prop-types */
-export default function CardMatchLive({ match }) {
+export default function CardMatchLiveUser({ match }) {
   const initialTimerState = JSON.parse(localStorage.getItem("timer"));
 
   const [elapsedTime, setElapsedTime] = useState(() => {
@@ -46,7 +46,7 @@ export default function CardMatchLive({ match }) {
             {match
               .filter((match) => match.status === "LIVE")
               .map((item) => (
-                <Link
+                <div
                   className="container mx-auto  md:px-8 py-2 mb-4"
                   key={item._id}
                   to={`update/${item._id}`}
@@ -171,7 +171,7 @@ export default function CardMatchLive({ match }) {
                       </div>
                     </div>
                   </div>
-                </Link>
+                </div>
               ))}
           </>
         )}

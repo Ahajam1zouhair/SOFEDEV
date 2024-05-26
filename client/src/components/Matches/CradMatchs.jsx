@@ -18,7 +18,7 @@ export default function CradMatchs({ match }) {
             {match
               .filter((match) => match.status !== "LIVE")
               .map((item) => (
-                <Link
+                <div
                   className="container md:px-8 md:py-2 mb-4"
                   key={item._id}
                   to={`update/${item._id}`}
@@ -119,7 +119,7 @@ export default function CradMatchs({ match }) {
                       </div>
                     </div>
                   </div>
-                </Link>
+                </div>
               ))}
           </>
         )}

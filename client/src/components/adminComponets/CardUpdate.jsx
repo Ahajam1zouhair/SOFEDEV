@@ -8,6 +8,8 @@ export default function CardUpdate({
   onChange,
   setMatchInput,
   onSubmit,
+  updateLoading,
+  handelDelete,
 }) {
   const initialTimerState = JSON.parse(localStorage.getItem("timer"));
 
@@ -98,7 +100,7 @@ export default function CardUpdate({
                   onChange={onChange}
                   className="match-score-number match-score-number--leading font-semibold w-10 text-xl md:text-3xl md:px-1"
                 />
-                <span className="match-score-divider text-xl md:text-3xl font-bold text-gray-500 mr-1">
+                <span className="match-score-divider text-xl md:text-3xl font-bold text-gray-500  ">
                   :
                 </span>
                 <input
@@ -107,7 +109,7 @@ export default function CardUpdate({
                   min={0}
                   name="scoresAway"
                   onChange={onChange}
-                  className="match-score-number match-score-number--leading font-semibold w-10 text-xl md:text-3xl md:px-1"
+                  className="match-score-number match-score-number--leading font-semibold w-10 text-xl md:text-3xl md:px-1 ml-2"
                 />
               </div>
               <div className="mt-2 text-xl font-semibold ">
@@ -148,7 +150,7 @@ export default function CardUpdate({
               stutusMatchLive();
             }}
           >
-            PAUSE
+            {timerRunning ? "PAUSE" : "CONTINUE"}
           </button>
           {/* <button
             className="mx-1 border border-current bg-gray-100 rounded-sm text-secondary text-xs md:text-sm font-semibold md:px-2 md:py-1"
@@ -180,7 +182,7 @@ export default function CardUpdate({
           </button>
         </div>
         <div className="flex justify-center items-center mt-2 pb-3">
-          <label className="md:w-1/12 px-3 py-2 text-lg font-medium text-gray-900 dark:text-white ">
+          <label className="md:w-1/12 px-3 py-2 text-xs md:text-sm  font-medium text-gray-900 dark:text-white ">
             IsVar
           </label>
           <select
@@ -208,23 +210,39 @@ export default function CardUpdate({
               matchInput.isVarcheck == "false" || !matchInput.isVarcheck
             }
           >
+            <option value="Checking Goal">Checking Goal</option>
             <option value="Checking Goal - Possible Offside">
               Checking Goal - Possible Offside
             </option>
-            <option value="true">True</option>
+            <option value="Var Checking - Possible Penalty">
+              Var Checking - Possible Penalty
+            </option>
+            <option value="Var Checking - Red Card">
+              Var Checking - Red Card
+            </option>
           </select>
         </div>
 
         <div className="flex justify-center items-center mt-2 pb-3">
           <Button
-            style={{ width: "200px", height: "50px" }}
+            style={{ width: "150px", height: "50px" }}
             htmlType="submit"
-            className="bg-gray-900 rounded-lg px-12 py-2.5 text-white text-opacity-90 text-sm shadow-md"
+            className="bg-gray-900 rounded-lg  py-2.5 text-white text-opacity-90 text-sm shadow-md mr-2"
             size="large"
             onClick={onSubmit}
-            // loading={Loading}
+            loading={updateLoading}
           >
-            Create account
+            save
+          </Button>
+          <Button
+            style={{ width: "150px", height: "50px" }}
+            htmlType="submit"
+            className="bg-red-400 rounded-lg  text-white text-opacity-90 text-sm shadow-md "
+            size="large"
+            onClick={handelDelete}
+            loading={updateLoading}
+          >
+            drops match
           </Button>
         </div>
       </div>

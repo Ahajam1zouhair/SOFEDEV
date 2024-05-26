@@ -80,6 +80,7 @@ const matchSchema = new Schema({
     },
     status: {
       type: String,
+      default: null,
     },
   },
   isValid: {
