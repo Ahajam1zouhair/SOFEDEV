@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { ProtectedRoute } from "./PrivateRouterAdmin";
 import StandingsCL from "../components/ChampionshipsCom/standingsCL";
 import Championships from "../pages/Championships";
 import Matchs from "../components/ChampionshipsCom/match/Matchs";
@@ -15,41 +15,15 @@ import Register from "../pages/auth/register";
 import New from "../pages/New";
 import Login from "../pages/auth/login";
 import CreateMatch from "../pages/Admin/CreateMatch";
-// import Update from "../pages/Admin/update";
 import AdminLayout from "../Layouts/AdminLayout";
 import UserLayout from "../Layouts/UserLayout";
-import { ProtectedRoute } from "./PrivateRouterAdmin";
 import MatchsAll from "../pages/Admin/Matchs";
 import UpdateMatch from "../pages/Admin/Update";
 import Matches from "../pages/Matches";
-import Profile from "../pages/profile";
-=======
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { ProtectedRoute } from './PrivateRouterAdmin';
-import StandingsCL from '../components/ChampionshipsCom/standingsCL';
-import Championships from '../pages/Championships';
-import Matchs from '../components/ChampionshipsCom/match/Matchs';
-import Scorers from '../components/ChampionshipsCom/scorers/scorers';
-import Palmares from '../components/ChampionshipsCom/palmares/palmares';
-import Competitions from '../pages/Competitions';
-import MatchsCP from '../components/competitionsCom/matchCP/MatchsCP';
-import StandingsCP from '../components/competitionsCom/standingsCP/standingsCP';
-import ScorersCL from '../components/competitionsCom/scorersCP/ScorersCp';
-import Clubs from '../pages/Clubs';
-import ClubByid from '../pages/ClubByid';
-import Register from '../pages/auth/register';
-import New from '../pages/New';
-import Login from '../pages/auth/login';
-import CreateMatch from '../pages/Admin/CreateMatch';
-import AdminLayout from '../Layouts/AdminLayout';
-import UserLayout from '../Layouts/UserLayout';
-import MatchsAll from '../pages/Admin/Matchs';
-import UpdateMatch from '../pages/Admin/Update';
-import Matches from '../pages/Matches';
-import Profile from '../components/profile/profile';
-import UpdateProfile from '../components/profile/updateprofile';
->>>>>>> 1ff661292d8d98e33edac9bb9cd38f48cd14e4c6
+import Profile from "../components/Profile/profile";
+import UpdateProfile from "../components/Profile/updateprofile";
+
+const isAuthenticated = JSON.parse(localStorage.getItem("user"));
 
 export default function Router() {
   return (
@@ -57,6 +31,11 @@ export default function Router() {
       <Routes>
         <Route path="/" element={<UserLayout />}>
           <Route index element={<Matches />} />
+          <Route
+            path="profile"
+            element={isAuthenticated ? <Profile /> : <Navigate to="/login" />}
+          />
+          <Route path="/updateprofile" element={<UpdateProfile />} />
           <Route path="/championships" element={<Championships />}>
             <Route index element={<Matchs />} />
             <Route path="standingsCL" element={<StandingsCL />} />
@@ -79,13 +58,13 @@ export default function Router() {
           <Route path="create" element={<CreateMatch />} />
           <Route path="update/:id" element={<UpdateMatch />} />
           <Route path="profile" element={<Profile />} />
+          
         </Route>
         <Route element={<ProtectedRoute />}>
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} /> 
+          <Route path="/login" element={<Login />} />
         </Route>
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/updateprofile" element={<UpdateProfile />} />
+        {/* <Route path="/updateprofile" element={<UpdateProfile />} /> */}
       </Routes>
     </BrowserRouter>
   );

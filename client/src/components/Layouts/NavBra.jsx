@@ -17,6 +17,11 @@ const dropdownNavs = [
         path: "/competitions/PL",
         src: "https://crests.football-data.org/PL.png",
       },
+      {
+        title: "Eredivisie",
+        path: "/competitions/DED",
+        src: "https://crests.football-data.org/DED.png",
+      },
     ],
   },
   {
@@ -30,6 +35,11 @@ const dropdownNavs = [
         title: "Bundesliga",
         path: "/competitions/BL1",
         src: "https://crests.football-data.org/BL1.png",
+      },
+      {
+        title: "Portuguese League",
+        path: "/competitions/PPL",
+        src: "https://crests.football-data.org/PPL.png",
       },
     ],
   },
@@ -246,17 +256,18 @@ export default function NavBar() {
               {name ? (
                 <div className="flex-1 flex items-center  space-x-2  flex-1 items-center justify-end gap-x-6 space-y-3 md:flex md:space-y-0">
                   <DropdownMenu.Root>
-                    <DropdownMenu.Trigger className="outline-none">
-                      <Avatar.Root>
-                        <Avatar.Image
-                          className="w-12 h-12 flex items-center gap-x-4 cursor-pointer rounded-full ring-offset-2 ring-gray-800 focus:ring-2 duration-150"
-                          src={url}
-                          alt="vienna"
-                        />
-                        <span className="block text-gray-500/80">{name}</span>
-                      </Avatar.Root>
-                    </DropdownMenu.Trigger>
-
+                    <Link to="profile">
+                      <DropdownMenu.Trigger className="outline-none">
+                        <Avatar.Root>
+                          <Avatar.Image
+                            className="w-8 h-8 flex items-center gap-x-4 cursor-pointer rounded-full ring-offset-2 ring-gray-800 focus:ring-2 duration-150"
+                            src={url}
+                            alt="vienna"
+                          />
+                          <span className="block text-gray-500/80">{name}</span>
+                        </Avatar.Root>
+                      </DropdownMenu.Trigger>
+                    </Link>
                     <li>
                       <Link
                         className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"

@@ -1,5 +1,8 @@
 import { Router } from "express";
 import {
+  changePasswordUser,
+  deletePhoto,
+  getUser,
   loginUser,
   profilePhoto,
   registerUser,
@@ -15,11 +18,19 @@ routerUser.route("/register").post(registerUser);
 routerUser.route("/login").post(loginUser);
 
 // User By Id
-routerUser.route("/profile/:id").put(verifyTokenAndOnlyUser, updateUser);
+routerUser
+  .route("/profile/:id")
+  .put(verifyTokenAndOnlyUser, updateUser)
+  .get(verifyTokenAndOnlyUser, getUser);
+// change Password User
+routerUser
+  .route("/profile/changepassword/:id")
+  .put(verifyTokenAndOnlyUser, changePasswordUser)
 
 // Profile Photo
 routerUser
   .route("/profile/profile-photo-upload/:id")
-  .post(verifyTokenAndOnlyUser, photoUpload, profilePhoto);
+  .post(verifyTokenAndOnlyUser, photoUpload, profilePhoto)
+  .delete(verifyTokenAndOnlyUser, deletePhoto);
 
 export default routerUser;

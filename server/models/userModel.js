@@ -20,7 +20,7 @@ const UserSchema = new Schema(
         type: String,
         required: false,
         default:
-          "https://cdn.pixabay.com/photo/2012/04/26/19/43/profile-42914_1280.png",
+          "https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_1280.png",
       },
       publicId: {
         type: String,
