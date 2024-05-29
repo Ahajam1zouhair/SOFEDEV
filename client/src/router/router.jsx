@@ -23,6 +23,7 @@ import UpdateMatch from '../pages/Admin/Update';
 import Matches from '../pages/Matches';
 import Profile from '../components/profile/profile';
 import UpdateProfile from '../components/profile/updateprofile';
+import UserManagement from '../components/UserManagement';
 
 export default function Router() {
   return (
@@ -57,6 +58,7 @@ export default function Router() {
           <Route path="/login" element={<Login />} /> 
         </Route>
         <Route path="/profile" element={<Profile />} />
+<Route path="/UserManagement" element={<UserManagement />} />
         <Route path="/updateprofile" element={<UpdateProfile />} />
       </Routes>
     </BrowserRouter>
