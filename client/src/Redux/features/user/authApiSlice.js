@@ -1,8 +1,8 @@
 import { apiAuth } from "../../Api/apiAuth";
 
 export const authApiSlice = apiAuth.injectEndpoints({
+  tagTypes: ["User"],
   endpoints: (build) => ({
-    
     register: build.mutation({
       query: (date) => ({
         url: "api/user/register",
@@ -17,9 +17,59 @@ export const authApiSlice = apiAuth.injectEndpoints({
         body: date,
       }),
     }),
-    
+    // get User by Id
+    tagTypes: ["User"],
+    profileUser: build.mutation({
+      query: (id) => ({
+        url: `/api/user/profile/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["User"],
+    }),
+    // New Profile picture
+    profileImage: build.mutation({
+      query: ({ id, image }) => ({
+        url: `/api/user/profile/profile-photo-upload/${id}`,
+        method: "POST",
+        body: image,
+      }),
+      invalidatesTags: ["User"]
+    }),
+    // New Profile picture
+    deletePicture: build.mutation({
+      query: (id) => ({
+        url: `/api/user/profile/profile-photo-upload/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["User"]
+    }),
+    // Update Profile
+    updateProfile: build.mutation({
+      query: ({ id, data }) => ({
+        url: `/api/user/profile/${id}`,
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: ["User"]
+    }),
+    // Update Profile
+    changePassword: build.mutation({
+      query: ({ id, data }) => ({
+        url: `/api/user/profile/changepassword/${id}`,
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: ["User"]
+    }),
   }),
 });
 
-export const { useRegisterMutation, useLoginMutation } =
-  authApiSlice;
+export const {
+  useRegisterMutation,
+  useLoginMutation,
+  useProfileImageMutation,
+  useProfileUserMutation,
+  useDeletePictureMutation,
+  useUpdateProfileMutation,
+  useChangePasswordMutation,
+} = authApiSlice;

@@ -84,6 +84,13 @@ export const loginUser = asyncHandler(async (req, res) => {
 // @desc    update a new User
 // @route   PUT http://localhost:4000/api/user/update
 // @access  Public
+export const getUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+  res.status(200).json(user);
+});
+// @desc    update a new User
+// @route   PUT http://localhost:4000/api/user/update
+// @access  Public
 export const updateUser = asyncHandler(async (req, res) => {
   const { error } = ValidateUpdateUser(req.body);
   if (error) {
@@ -100,6 +107,49 @@ export const updateUser = asyncHandler(async (req, res) => {
     }
   );
   res.status(200).json(updateuser);
+});
+// @desc    update a new User
+// @route   PUT http://localhost:4000/api/user/update
+// @access  Public
+// export const changePassword = asyncHandler(async (req, res) => {
+
+//   if (error) {
+//     return res.status(400).json({ message: error.details[0].message });
+//   }
+//   const updateuser = await User.findByIdAndUpdate(
+//     req.params.id,
+//     {
+//       $set: req.body,
+//     },
+//     {
+//       new: true,
+//       fields: { password: 0, isAdmin: 0, isSupervisor: 0 },
+//     }
+//   );
+//   res.status(200).json(updateuser);
+// });
+export const changePasswordUser = asyncHandler(async (req, res) => {
+  const { password, new_password } = req.body;
+
+  const user = await User.findById(req.params.id);
+  if (!user) {
+    return res.status(404).json({ error: "user not found" });
+  }
+
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+  if (!isPasswordValid) {
+    return res.status(400).json({ error: "Invalid password" });
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(new_password, salt);
+  const updatedPassword = await User.findByIdAndUpdate(
+    req.params.id,
+    { password: hashedPassword },
+    { new: true }
+  );
+
+  res.status(200).json({ message: "change Password successfully" });
 });
 
 // @desc    Profile Photo Upload
@@ -134,4 +184,26 @@ export const profilePhoto = asyncHandler(async (req, res) => {
   });
   // 8. Delete the file from the server
   fs.unlinkSync(imagePath);
+});
+
+// @desc    Profile Photo Upload
+// @route   post http://localhost:4000/api/user/profile-photo-upload
+// @access  only user
+export const deletePhoto = asyncHandler(async (req, res) => {
+  // 4. get the user from Db
+  const user = await User.findById(req.params.id);
+  // 5.  Delete the old profile photo if  exists
+  if (user.image_profile.publicId !== null) {
+    await cloudinaryRemoveImage(user.image_profile.publicId);
+  }
+  user.image_profile = {
+    url: "https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_1280.png",
+    publicId: null,
+  };
+  await user.save();
+  // 7 . send response to client
+  res.status(200).json({
+    message: "remove current picture successfully",
+    profilePhoto: { url: user.image_profile.url },
+  });
 });

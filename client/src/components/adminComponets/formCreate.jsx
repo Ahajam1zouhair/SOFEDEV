@@ -4,6 +4,7 @@ import SelectCompetition from "./selectCompetition";
 import SelectTimeHome from "./selectTime";
 import SelectTimeAway from "./selectTimeAway";
 
+
 export default function FormCreate({
   setLigue,
   teams,
@@ -47,6 +48,7 @@ export default function FormCreate({
         <label className="sm:w-2/12 px-3 py-2 text-lg font-medium text-gray-900 dark:text-white ">
           Venue
         </label>
+        
         <input
           type="text"
           className={`w-72 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg `}
@@ -70,11 +72,6 @@ export default function FormCreate({
         >
           <option>Select Status Match</option>
           <option>SCHEDULED</option>
-          <option>FIREST HALF</option>
-          <option>SEDCOND HALF</option>
-          <option>PAUSED</option>
-          <option>FINISHED</option>
-          <option>POSTPONED</option>
         </select>
       </div>
       <div className="flex flex-wrap mb-6">

@@ -18,14 +18,14 @@ export default function CradMatchs({ match }) {
             {match
               .filter((match) => match.status !== "LIVE")
               .map((item) => (
-                <Link
+                <div
                   className="container md:px-8 md:py-2 mb-4"
                   key={item._id}
                   to={`update/${item._id}`}
                 >
-                  <div className="bg-white rounded-lg shadow-lg flex flex-col  ">
+                  <div className="bg-white rounded-lg shadow-lg flex flex-col">
                     <div className="match-header flex items-center md:px-4 py-2 border-b-2 border-gray-200">
-                      <div className="md:py-1 px-1 md:px-2 rounded font-semibold flex items-center ">
+                      <div className="md:py-1 px-1 md:px-2 rounded font-semibold flex items-center">
                         <div className="match-tournament flex items-center font-semibold">
                           <img
                             src={item.competition.emblem}
@@ -119,7 +119,7 @@ export default function CradMatchs({ match }) {
                       </div>
                     </div>
                   </div>
-                </Link>
+                </div>
               ))}
           </>
         )}

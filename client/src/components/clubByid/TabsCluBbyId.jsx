@@ -34,7 +34,7 @@ export default function TabsCluBbyId({ data }) {
   return (
     <Tabs.Root
       className="max-w-screen-xl mx-auto px-4 md:px-8"
-      defaultValue="Upcoming  Matches"
+      defaultValue="Results"
     >
       <Tabs.List
         className="w-full border-b flex items-center gap-x-3 overflow-x-auto text-sm"

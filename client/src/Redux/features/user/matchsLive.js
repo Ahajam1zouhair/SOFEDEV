@@ -34,6 +34,14 @@ export const matchsLive = apiAuth.injectEndpoints({
       }),
       invalidatesTags: ["Match"],
     }),
+    // get match By id
+    deleteMatch: build.mutation({
+      query: (id) => ({
+        url: `/api/match/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Match"],
+    }),
   }),
 });
 
@@ -42,5 +50,6 @@ export const {
   useGetAllmatchsQuery,
   useGetBYIdmatchMutation,
   useUpdateMatchMutation,
+  useDeleteMatchMutation,
 } = matchsLive;
 //
