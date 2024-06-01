@@ -49,6 +49,12 @@ export default function Router() {
             <Route path="standings" element={<StandingsCP />} />
             <Route path="scorers" element={<ScorersCL />} />
           </Route>
+          <Route path="/championship/:competitions" element={<Competitions />}>
+            <Route index element={<MatchsCP />} />
+            <Route path="match" element={<MatchsCP />} />
+            <Route path="standings" element={<StandingsCP />} />
+            <Route path="scorers" element={<ScorersCL />} />
+          </Route>
           <Route path="/clubs" element={<Clubs />} />
           <Route path="/clubs/:name/:id" element={<ClubByid />} />
           <Route path="/new" element={<New />} />
@@ -58,13 +64,11 @@ export default function Router() {
           <Route path="create" element={<CreateMatch />} />
           <Route path="update/:id" element={<UpdateMatch />} />
           <Route path="profile" element={<Profile />} />
-          
         </Route>
         <Route element={<ProtectedRoute />}>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
         </Route>
-        {/* <Route path="/updateprofile" element={<UpdateProfile />} /> */}
       </Routes>
     </BrowserRouter>
   );

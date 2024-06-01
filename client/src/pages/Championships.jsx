@@ -4,7 +4,6 @@ import { Outlet, useNavigate } from "react-router-dom";
 export default function Championships() {
   const [selectedItem, setSelectedItem] = useState(0);
   const navigate = useNavigate();
-
   const tableItems = [
     {
       label: "Matchs",
@@ -19,12 +18,10 @@ export default function Championships() {
       path: "/championships/scorersCL",
     },
   ];
-
   const handleItemClick = (idx, path) => {
     setSelectedItem(idx);
     navigate(path);
   };
-
   return (
     <div>
     <div className="flex items-center m-4">

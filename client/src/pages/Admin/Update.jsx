@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import CardUpdate from "../../components/adminComponets/CardUpdate";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loading from "../../components/Loading/Loading";
 export default function UpdateMatch() {
   const [matchInput, setMatchInput] = useState({
     scoresHome: 0,
@@ -17,11 +18,11 @@ export default function UpdateMatch() {
     VarStatus: null,
   });
   const navigate = useNavigate();
-  const [getBYIdmatch, { data: match, error, isLoading, isSuccess }] =
-    useGetBYIdmatchMutation();
+  const [getBYIdmatch, { data: match, error, isLoading }] =
+  useGetBYIdmatchMutation();
   const { id } = useParams();
   const [updateMatch, { isLoading: updateLoading }] = useUpdateMatchMutation();
-  const [deleteMatch, { isLoading: udelete }] = useDeleteMatchMutation();
+  const [deleteMatch] = useDeleteMatchMutation();
 
   useEffect(() => {
     if (id) {
@@ -82,7 +83,7 @@ export default function UpdateMatch() {
   return (
     <div>
       {isLoading ? (
-        <p>Loading...</p>
+        <Loading/>
       ) : error ? (
         <p>Error loading match data</p>
       ) : (

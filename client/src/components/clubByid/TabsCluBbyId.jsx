@@ -4,6 +4,7 @@ import DataClub from "./DataClub";
 import MatchClub from "./matchClub";
 import StandingClub from "./StandingClub";
 import TableTeam from "./tableTeam";
+import NewsClub from "./newsClub";
 
 export default function TabsCluBbyId({ data }) {
   const tabItems = [
@@ -26,8 +27,12 @@ export default function TabsCluBbyId({ data }) {
       ) : null,
     },
     {
-      name: "team",
+      name: "Team",
       component: <TableTeam data={data} />,
+    },
+    {
+      name: "News",
+      component: <NewsClub data={data} />,
     },
   ];
 

@@ -20,7 +20,7 @@ const dropdownNavs = [
       {
         title: "Eredivisie",
         path: "/competitions/DED",
-        src: "https://crests.football-data.org/DED.png",
+        src: "https://crests.football-data.org/ED.png",
       },
     ],
   },
@@ -69,7 +69,7 @@ export default function NavBar() {
   const navigate = useNavigate();
   // Replace javascript:void(0) paths with your paths
   const navigation = [
-    { title: "Matches Live", path: "/", isDrapdown: false },
+    { title: "Matches ", path: "/", isDrapdown: false },
     { title: "New", path: "/new", isDrapdown: false },
     {
       title: "Competitions",
@@ -110,7 +110,7 @@ export default function NavBar() {
         }`}
       >
         <div className="items-center gap-x-14 px-4 max-w-screen-xl mx-auto md:flex md:px-8">
-          <div className="flex items-center justify-between py-1 md:py-1 md:block">
+          <div className="flex items-center justify-between py-1 md:py-1 md:block ">
             <a href="javascript:void(0)">
               <img
                 src="https://www.cisex.org/sites/default/files/2023-02/Sofascore-01-1.png"
@@ -159,13 +159,13 @@ export default function NavBar() {
               state ? "block" : "hidden"
             }`}
           >
-            <ul className="items-center space-y-6 md:flex md:space-x-6 md:space-y-0">
+            <ul className="items-center  space-y-6 md:flex md:space-x-6 md:space-y-0">
               {navigation.map((item, idx) => {
                 return (
-                  <li key={idx}>
+                  <li key={idx} className="cursor-pointer">
                     {item.isDrapdown ? (
                       <button
-                        className="w-full flex items-center justify-between text-gray-800 text-xl gap-1 text-gray-700 hover:text-indigo-600"
+                        className="w-full flex items-center justify-between text-gray-800 text-xl gap-1 text-gray-700 hover:text-indigo-600 cursor-pointer"
                         onClick={() =>
                           setDrapdownState({
                             idx,
@@ -213,7 +213,7 @@ export default function NavBar() {
                     {item.isDrapdown &&
                     drapdownState.idx == idx &&
                     drapdownState.isActive ? (
-                      <div className="mt-6 inset-x-0 top-20 w-full md:absolute md:border-y md:shadow-md md:mt-0  bg-white">
+                      <div className="mt-6 inset-x-0 top-20 w-full md:absolute md:border-y md:shadow-md md:mt-0 z-30  bg-white">
                         <ul className="max-w-screen-xl mx-auto grid items-center gap-6 md:p-8 md:grid-cols-2 lg:grid-cols-3">
                           {item?.navs.map((dropdownItem, idx) => (
                             <li key={idx}>

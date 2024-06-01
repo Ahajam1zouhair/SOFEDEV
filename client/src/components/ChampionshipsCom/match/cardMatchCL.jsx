@@ -43,7 +43,7 @@ function CardMatchCL({ data, stage }) {
 
   // Exemple d'utilisation
   const dateStringS = "2024-05-01T19:00:00Z";
-  const { date, time } = convertToLocaleDateTime(dateStringS);
+  const { date } = convertToLocaleDateTime(dateStringS);
   console.log("Date locale :", date);
   console.log(data);
 
@@ -55,75 +55,7 @@ function CardMatchCL({ data, stage }) {
             {data.matches
               .filter((item) => item.stage === stage)
               .map((item) => (
-                // <div
-                //   key={item.id}
-                //   className="w-full sm:w-5/12 border-solid border-2 border-indigo-100 m-2"
-                // >
-                //   <div className="flex items-center justify-between mb-2 m-2">
-                //     <div className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900 ">
-                //       <div className="">
-                //         <img
-                //           src={item.homeTeam.crest}
-                //           className="w-10 h-10 md:w-16 md:h-16"
-                //           alt=""
-                //         />
-                //       </div>
-                //       <p className=" text-sm md:text-lg ">
-                //         {item.homeTeam.shortName}
-                //       </p>
-                //     </div>
-                //     <div className=" block font-sans text-base antialiased font-medium leading-relaxed grid place-content-center">
-                //       <p className=" text-sm md:text-lg font-sans mb-1 ">
-                //         {item?.group ? (
-                //           <span>{item?.group}</span>
-                //         ) : (
-                //           <span>{item.stage}</span>
-                //         )}
-                //       </p>
-                //       {item.status === "FINISHED" ? (
-                //         <p className="text-sm md:text-lg font-sans text-gray-700 ">
-                //           <span className="mr-2 text-slate-500">
-                //             Final result
-                //           </span>
-                //           <span>
-                //             {item.score.fullTime.home} :
-                //             {item.score.fullTime.away}ff
-                //           </span>
-                //         </p>
-                //       ) : (
-                //         <>
-                //           <p className="text-sm md:text-lg font-sans text-gray-700">
-                //             <span className="text-slate-600">
-                //               In {countDaysSince(item.utcDate)} days
-                //             </span>
-                //           </p>
-                //           <p className="text-sm md:text-lg font-sans text-gray-700">
-                //             <span className="text-slate-600">
-                //               {convertToLocaleDateTime(item.utcDate).date}
-                //             </span>
-                //           </p>
-                //           <p className="text-sm md:text-lg font-sans grid place-content-center">
-                //             {convertToLocaleDateTime(item.utcDate).time}
-                //           </p>
-                //         </>
-                //       )}
-                //     </div>
-                //     <div className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900 m-2 ">
-                //       <div className="flex justify-center">
-                //         <img
-                //           src={item.awayTeam.crest}
-                //           className="w-10 h-10 md:w-16 md:h-16 "
-                //           alt=""
-                //         />
-                //       </div>
-                //       <p className="text-sm md:text-lg">
-                //         {item.awayTeam.shortName}
-                //       </p>
-                //     </div>
-                //   </div>
-                // </div>
-
-                <div
+              <div
                   className="w-full sm:w-5/12 container md:px-2 md:py-1 mb-4"
                   key={item._id}
                 >

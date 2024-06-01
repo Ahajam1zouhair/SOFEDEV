@@ -5,8 +5,6 @@ export const ProtectedRoute = () => {
   return isAuthenticated ? <Navigate to="/" /> : <Outlet />;
 };
 
-
-
 export const Logout = () => {
   localStorage.removeItem("user");
 };

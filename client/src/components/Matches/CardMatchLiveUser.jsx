@@ -65,7 +65,7 @@ export default function CardMatchLiveUser({ match }) {
                           <p className="btn-icon flex items-center text-xs md:text-sm">
                             {item.varcheck.isVarcheck ? (
                               <>
-                                <span className="relative flex h-3 w-3">
+                                <span className="relative flex h-3 w-3 z-0">
                                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-800 opacity-75"></span>
                                   <span className="relative inline-flex rounded-full h-3 w-3 bg-purple-800"></span>
                                 </span>

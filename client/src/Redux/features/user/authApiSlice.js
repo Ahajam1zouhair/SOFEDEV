@@ -61,6 +61,12 @@ export const authApiSlice = apiAuth.injectEndpoints({
       }),
       invalidatesTags: ["User"]
     }),
+    getAllmatchs: build.query({
+      query: () => ({
+        url: "/api/match",
+      }),
+      providesTags: ["Match"],
+    }),
   }),
 });
 
@@ -72,4 +78,5 @@ export const {
   useDeletePictureMutation,
   useUpdateProfileMutation,
   useChangePasswordMutation,
+  
 } = authApiSlice;
