@@ -7,11 +7,11 @@ export default function CradMatchs({ match }) {
   console.log(match);
   return (
     <div>
-      {match && (
-        <>
-          <h1 className="font-semibold">Today's matches </h1>
-        </>
-      )}
+      {/* {match && (
+        // <>
+        //   <h1 className="font-semibold">Today's matches </h1>
+        // </>
+      )} */}
       <div className="flex flex-wrap justify-center">
         {match && (
           <>

@@ -10,6 +10,7 @@ export default function NewsClub() {
   const [getNewsTeams, { data, isLoading , error}] = useGetNewsTeamsMutation();
   useEffect(() => {
     getNewsTeams({ name });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getNewsTeams]);
   console.log(data);
   return (

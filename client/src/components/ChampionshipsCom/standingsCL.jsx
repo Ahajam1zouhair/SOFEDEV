@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useGetStandingsChLeByIdMutation } from "../../Redux/features/match/matchSlice";
 import Loading from "../Loading/Loading";
 
 export default function Championships() {
   const [selectedItem, setSelectedItem] = useState(0);
-  const navigate = useNavigate();
   const [getStandingsChLeById, { data, isLoading }] =
     useGetStandingsChLeByIdMutation();
 
@@ -61,21 +60,15 @@ export default function Championships() {
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border border-slate-300">
                           {item.position}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm md:text-lg font-medium text-gray-900 border border-slate-300">
-                         
-                           <div className=" flex flex-col items-center">
-                          <div className="team-logo w-14  h-14  flex items-center justify-center rounded-full">
-                            <img
-                              src={item.team.crest}
-                              alt={item.team.crest}
-                              className="w-8 md:w-10"
-                            />
-                          </div>
-                          <h2 className="text-xs md:text-mx mt-2 font-semibold">
-                            {item.team.tla}
-                          </h2>
-                        </div>
-                        </td>
+                        <Link to={`/clubs/${item.team.name}/${item.team.id}`}
+                        className="px-3 py-2 whitespace-nowrap text-xs md:text-sm font-medium flex items-center ">
+                          <img
+                            src={item.team.crest}
+                            className="w-6 h-6 md:w-8 md:h-8 mr-2"
+                            alt=""
+                          />
+                          <span>{item.team.tla}</span>
+                        </Link>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border border-slate-300">
                           {item.playedGames}
                         </td>

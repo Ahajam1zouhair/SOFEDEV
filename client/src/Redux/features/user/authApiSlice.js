@@ -3,6 +3,7 @@ import { apiAuth } from "../../Api/apiAuth";
 export const authApiSlice = apiAuth.injectEndpoints({
   tagTypes: ["User"],
   endpoints: (build) => ({
+    // register
     register: build.mutation({
       query: (date) => ({
         url: "api/user/register",
@@ -10,6 +11,7 @@ export const authApiSlice = apiAuth.injectEndpoints({
         body: date,
       }),
     }),
+    // Login
     login: build.mutation({
       query: (date) => ({
         url: "/api/user/login",
@@ -26,6 +28,17 @@ export const authApiSlice = apiAuth.injectEndpoints({
       }),
       providesTags: ["User"],
     }),
+    // get All Users
+    getAllUsers: build.query({
+      query: ({ page = 1, pageSize = 10 }) => ({
+        url: `/api/user`,
+        params: {
+          page,
+          pageSize,
+        },
+      }),
+      providesTags: ["User"],
+    }),
     // New Profile picture
     profileImage: build.mutation({
       query: ({ id, image }) => ({
@@ -33,7 +46,7 @@ export const authApiSlice = apiAuth.injectEndpoints({
         method: "POST",
         body: image,
       }),
-      invalidatesTags: ["User"]
+      invalidatesTags: ["User"],
     }),
     // New Profile picture
     deletePicture: build.mutation({
@@ -41,7 +54,7 @@ export const authApiSlice = apiAuth.injectEndpoints({
         url: `/api/user/profile/profile-photo-upload/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["User"]
+      invalidatesTags: ["User"],
     }),
     // Update Profile
     updateProfile: build.mutation({
@@ -50,7 +63,7 @@ export const authApiSlice = apiAuth.injectEndpoints({
         method: "PUT",
         body: data,
       }),
-      invalidatesTags: ["User"]
+      invalidatesTags: ["User"],
     }),
     // Update Profile
     changePassword: build.mutation({
@@ -59,7 +72,7 @@ export const authApiSlice = apiAuth.injectEndpoints({
         method: "PUT",
         body: data,
       }),
-      invalidatesTags: ["User"]
+      invalidatesTags: ["User"],
     }),
     getAllmatchs: build.query({
       query: () => ({
@@ -78,5 +91,5 @@ export const {
   useDeletePictureMutation,
   useUpdateProfileMutation,
   useChangePasswordMutation,
-  
+  useGetAllUsersQuery,
 } = authApiSlice;

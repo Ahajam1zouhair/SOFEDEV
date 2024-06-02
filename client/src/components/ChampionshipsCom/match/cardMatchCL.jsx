@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 
+import { Link } from "react-router-dom";
+
 function CardMatchCL({ data, stage }) {
   function countDaysSince(dateString) {
     // Convertir la chaîne de date en objet Date
@@ -55,7 +57,7 @@ function CardMatchCL({ data, stage }) {
             {data.matches
               .filter((item) => item.stage === stage)
               .map((item) => (
-              <div
+                <div
                   className="w-full sm:w-5/12 container md:px-2 md:py-1 mb-4"
                   key={item._id}
                 >
@@ -86,7 +88,10 @@ function CardMatchCL({ data, stage }) {
                     </div>
                     <div className="match-content flex">
                       <div className="column flex justify-center items-center p-8 w-1/3">
-                        <div className=" flex flex-col items-center">
+                        <Link
+                          to={`/clubs/${item.homeTeam.name}/${item.homeTeam.id}`}
+                          className=" flex flex-col items-center"
+                        >
                           <div className="team-logo w-14  h-14  flex items-center justify-center rounded-full bg-white shadow-md">
                             <img
                               src={item.homeTeam.crest}
@@ -97,7 +102,7 @@ function CardMatchCL({ data, stage }) {
                           <h2 className="text-xs md:text-mx mt-2 font-semibold">
                             {item.homeTeam.shortName}
                           </h2>
-                        </div>
+                        </Link>
                       </div>
                       <div className="column flex justify-center items-center  w-1/3">
                         <div className="match-details text-center">
@@ -163,7 +168,10 @@ function CardMatchCL({ data, stage }) {
                         </div>
                       </div>
                       <div className="column flex justify-center items-center  w-1/3">
-                        <div className="team flex flex-col items-center">
+                      <Link
+                          to={`/clubs/${item.awayTeam.name}/${item.awayTeam.id}`}
+                          className=" flex flex-col items-center"
+                        >
                           <div className="team-logo w-14  h-14  flex items-center justify-center rounded-full bg-white shadow-md">
                             <img
                               src={item.awayTeam.crest}
@@ -174,7 +182,7 @@ function CardMatchCL({ data, stage }) {
                           <h2 className="text-xs md:text-sm mt-2 font-semibold">
                             {item.awayTeam.shortName}
                           </h2>
-                        </div>
+                        </Link>
                       </div>
                     </div>
                   </div>

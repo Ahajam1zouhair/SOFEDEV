@@ -10,7 +10,7 @@ export default function AdminLayout() {
       {isAdmin ? (
         <div >
           <Sidebar />
-          <div className="p-4 m-4 sm:ml-64 md:px-16">
+          <div className="mt-10 sm:ml-64 md:px-16">
             <Outlet />
           </div>
         </div>

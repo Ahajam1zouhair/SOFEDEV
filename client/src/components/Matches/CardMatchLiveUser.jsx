@@ -39,7 +39,6 @@ export default function CardMatchLiveUser({ match }) {
   console.log(formatTime(elapsedTime));
   return (
     <div>
-
       <div className="flex flex-wrap justify-center">
         {match && (
           <>
@@ -94,7 +93,10 @@ export default function CardMatchLiveUser({ match }) {
                     </div>
                     <div className="match-content flex">
                       <div className="column flex justify-center items-center p-8 w-1/3">
-                        <div className="team flex flex-col items-center">
+                        <Link
+                          to={`/clubs/${item.teams.home.name}/${item.teams.home.id}`}
+                          className="team flex flex-col items-center"
+                        >
                           <div className="team-logo w-14 md:w-20 h-14 md:h-20 flex items-center justify-center rounded-full bg-white shadow-md">
                             <img
                               src={item.teams.home.image}
@@ -105,7 +107,7 @@ export default function CardMatchLiveUser({ match }) {
                           <h2 className="text-xs md:text-xl mt-2 font-semibold">
                             {item.teams.home.name}
                           </h2>
-                        </div>
+                        </Link>
                       </div>
                       <div className="column flex justify-center items-center  w-1/3">
                         <div className="match-details text-center">
@@ -156,7 +158,9 @@ export default function CardMatchLiveUser({ match }) {
                         </div>
                       </div>
                       <div className="column flex justify-center items-center p-8 w-1/3">
-                        <div className="team flex flex-col items-center">
+                        <Link 
+                        to={`/clubs/${item.teams.away.name}/${item.teams.away.id}`}
+                         className="team flex flex-col items-center">
                           <div className="team-logo w-14 md:w-20 h-14 md:h-20 flex items-center justify-center rounded-full bg-white shadow-md">
                             <img
                               src={item.teams.away.image}
@@ -167,7 +171,7 @@ export default function CardMatchLiveUser({ match }) {
                           <h2 className="text-xs md:text-xl mt-2 font-semibold">
                             {item.teams.away.name}
                           </h2>
-                        </div>
+                        </Link>
                       </div>
                     </div>
                   </div>

@@ -2,13 +2,17 @@ import { Router } from "express";
 import {
   changePasswordUser,
   deletePhoto,
+  getAllUsers,
   getUser,
   loginUser,
   profilePhoto,
   registerUser,
   updateUser,
 } from "../controllers/controllerUser.js";
-import { verifyTokenAndOnlyUser } from "../middlewares/auth.Middleware.js";
+import {
+  verifyTokenAndAdmin,
+  verifyTokenAndOnlyUser,
+} from "../middlewares/auth.Middleware.js";
 import { photoUpload } from "../middlewares/photoUpload.js";
 
 const routerUser = Router();
@@ -16,6 +20,8 @@ const routerUser = Router();
 routerUser.route("/register").post(registerUser);
 // login
 routerUser.route("/login").post(loginUser);
+// login
+routerUser.route("/").get(verifyTokenAndAdmin, getAllUsers);
 
 // User By Id
 routerUser
@@ -25,7 +31,7 @@ routerUser
 // change Password User
 routerUser
   .route("/profile/changepassword/:id")
-  .put(verifyTokenAndOnlyUser, changePasswordUser)
+  .put(verifyTokenAndOnlyUser, changePasswordUser);
 
 // Profile Photo
 routerUser

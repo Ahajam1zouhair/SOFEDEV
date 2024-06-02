@@ -4,6 +4,7 @@ export default function CardNews({ article }) {
     <div>
       <a
         href={article.url}
+        target="_blank"
         className="container md:px-2 md:py-1 mb-4"
       >
         <div className="bg-white rounded-lg shadow-lg flex flex-col  ">

@@ -7,11 +7,7 @@ export default function CradMatchs({ match }) {
   console.log(match);
   return (
     <div>
-      {match && (
-        <>
-          <h1 className="font-semibold">Today's matches </h1>
-        </>
-      )}
+      {/* {match && <></>} */}
       <div className="flex flex-wrap justify-center">
         {match && (
           <>
@@ -48,7 +44,10 @@ export default function CradMatchs({ match }) {
                     </div>
                     <div className="match-content flex">
                       <div className="column flex justify-center items-center p-8 w-1/3">
-                        <div className=" flex flex-col items-center">
+                        <Link
+                          to={`/clubs/${item.teams.home.name}/${item.teams.home.id}`}
+                          className=" flex flex-col items-center"
+                        >
                           <div className="team-logo w-14 md:w-20 h-14 md:h-20 flex items-center justify-center rounded-full bg-white shadow-md">
                             <img
                               src={item.teams.home.image}
@@ -59,7 +58,7 @@ export default function CradMatchs({ match }) {
                           <h2 className="text-xs md:text-xl mt-2 font-semibold">
                             {item.teams.home.name}
                           </h2>
-                        </div>
+                        </Link>
                       </div>
                       <div className="column flex justify-center items-center  w-1/3">
                         <div className="match-details text-center">
@@ -68,43 +67,47 @@ export default function CradMatchs({ match }) {
                               Final
                             </span>
                           </div>
-                            {item.status === "FINISHED" ? (
-                              <div className="match-score mt-2">
-                                <span
-                                  className={`match-score-number match-score-number--leading text-xl md:text-3xl font-semibold  mr-1 ${
-                                    item.scores.home > item.scores.away
-                                      ? "text-purple-600"
-                                      : null
-                                  }`}
-                                >
-                                  {item.scores.home}
-                                </span>
-                                <span className="match-score-divider text-xl md:text-3xl font-bold text-gray-500 mr-1">
-                                  :
-                                </span>
-                                <span
-                                  className={`match-score-number match-score-number--leading text-xl md:text-3xl font-semibold  mr-1 ${
-                                    item.scores.home < item.scores.away
-                                      ? "text-purple-600"
-                                      : null
-                                  }`}
-                                >
-                                  {item.scores.away}
-                                </span>
-                              </div>
-                            ) :   <div className="match-score flex justify-center">
-                            <span className="text-2xl   text-lime-500  mr-2">
-                              <MdStadium />
-                            </span>
-                            <span className="match-score-number match-score-number--leading text-sm md:text-xl font-semibold mr-1 ">
-                              {item.venue}
-                            </span>
-                          </div>}
-                           
+                          {item.status === "FINISHED" ? (
+                            <div className="match-score mt-2">
+                              <span
+                                className={`match-score-number match-score-number--leading text-xl md:text-3xl font-semibold  mr-1 ${
+                                  item.scores.home > item.scores.away
+                                    ? "text-purple-600"
+                                    : null
+                                }`}
+                              >
+                                {item.scores.home}
+                              </span>
+                              <span className="match-score-divider text-xl md:text-3xl font-bold text-gray-500 mr-1">
+                                :
+                              </span>
+                              <span
+                                className={`match-score-number match-score-number--leading text-xl md:text-3xl font-semibold  mr-1 ${
+                                  item.scores.home < item.scores.away
+                                    ? "text-purple-600"
+                                    : null
+                                }`}
+                              >
+                                {item.scores.away}
+                              </span>
+                            </div>
+                          ) : (
+                            <div className="match-score flex justify-center">
+                              <span className="text-2xl   text-lime-500  mr-2">
+                                <MdStadium />
+                              </span>
+                              <span className="match-score-number match-score-number--leading text-sm md:text-xl font-semibold mr-1 ">
+                                {item.venue}
+                              </span>
+                            </div>
+                          )}
                         </div>
                       </div>
                       <div className="column flex justify-center items-center  w-1/3">
-                        <div className="team flex flex-col items-center">
+                        <Link
+                          to={`/clubs/${item.teams.away.name}/${item.teams.away.id}`}
+                          className="team flex flex-col items-center"
+                        >
                           <div className="team-logo w-14 md:w-20 h-14 md:h-20 flex items-center justify-center rounded-full bg-white shadow-md">
                             <img
                               src={item.teams.away.image}
@@ -115,7 +118,7 @@ export default function CradMatchs({ match }) {
                           <h2 className="text-xs md:text-xl mt-2 font-semibold">
                             {item.teams.away.name}
                           </h2>
-                        </div>
+                        </Link>
                       </div>
                     </div>
                   </div>

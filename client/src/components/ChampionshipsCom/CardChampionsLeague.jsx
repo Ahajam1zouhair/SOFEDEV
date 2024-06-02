@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 /* eslint-disable react/prop-types */
 export default function CardChampionships({ data }) {
   return (
@@ -10,7 +12,7 @@ export default function CardChampionships({ data }) {
               className="h-32 md:h-48 p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700 mb-4"
             >
               <div className="flex items-center justify-between mb-2">
-                <div className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900">
+                <Link to={`/clubs/${item.team2.name}/${item.team2.id}`} className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900">
                   <div className="flex justify-center">
                     <img
                       src={item.team1.teamIconUrl}
@@ -21,7 +23,7 @@ export default function CardChampionships({ data }) {
                   <p className="size-20 text-sm md:text-lg ">
                     {item.team1.teamName}
                   </p>
-                </div>
+                </Link>
                 <div className="block font-sans text-base antialiased font-medium leading-relaxed ">
                   <p className=" text-sm md:text-lg font-sans mb-1">
                     {item.group.groupName}
@@ -52,7 +54,7 @@ export default function CardChampionships({ data }) {
                     {item.location?.locationStadium}
                   </p>
                 </div>
-                <div className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900">
+                <Link to={`/clubs/${item.team2.name}/${item.team2.id}`} className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900">
                   <div className="flex justify-center">
                     <img
                       src={item.team2.teamIconUrl}
@@ -63,7 +65,7 @@ export default function CardChampionships({ data }) {
                   <p className="size-20 text-sm md:text-lg">
                     {item.team2.teamName}
                   </p>
-                </div>
+                </Link>
               </div>
             </div>
           ))}

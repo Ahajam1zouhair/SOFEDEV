@@ -7,7 +7,7 @@ export default function DataClub({ data }) {
         <div className="max-w-lg mx-auto p-6 bg-gradient-to-b from-blue-900 to-white ">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-3xl font-bold text-blue-200">
-              {data.name}a
+              {data.name}
             </h3>
             <img
               src={data.area.flag}

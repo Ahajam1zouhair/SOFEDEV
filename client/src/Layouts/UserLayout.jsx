@@ -1,3 +1,4 @@
+import Footer from "../components/Layouts/Footer";
 import NavBar from "../components/Layouts/NavBra";
 import { Navigate, Outlet } from "react-router-dom";
 
@@ -7,10 +8,13 @@ export default function UserLayout() {
   return (
     <>
       {!isAdmin ? (
-        <div>
+        <div className="flex flex-col min-h-screen ">
           <NavBar />
-          <div>
+          <div className="flex-grow main-content">
             <Outlet />
+          </div>
+          <div className="mt-auto ">
+            <Footer />
           </div>
         </div>
       ) : (
@@ -19,4 +23,3 @@ export default function UserLayout() {
     </>
   );
 }
-

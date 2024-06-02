@@ -148,7 +148,7 @@ export default function CardMatchLive({ match }) {
                           </div>
                           <div className="match-time-lapsed text-xs md:text-sm text-orange-600 font-semibold mt-2">
                             {item.varcheck.isVarcheck ? (
-                              <span>Checking Goll - Possible Offside</span>
+                              <span>{item.varcheck.status}</span>
                             ) : (
                               ""
                             )}

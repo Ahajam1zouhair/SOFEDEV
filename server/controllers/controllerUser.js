@@ -81,16 +81,25 @@ export const loginUser = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    update a new User
-// @route   PUT http://localhost:4000/api/user/update
-// @access  Public
+// @desc    get  User by id
+// @route   GET http://localhost:4000/api/user/update
+// @access  Private
 export const getUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
   res.status(200).json(user);
 });
+
+// @desc    get  all Users
+// @route   GET http://localhost:4000/api/user
+// @access   only Admin
+export const getAllUsers = asyncHandler(async (req, res) => {
+  const user = await User.find();
+  res.status(200).json(user);
+});
+
 // @desc    update a new User
 // @route   PUT http://localhost:4000/api/user/update
-// @access  Public
+// @access  Private
 export const updateUser = asyncHandler(async (req, res) => {
   const { error } = ValidateUpdateUser(req.body);
   if (error) {
@@ -108,9 +117,10 @@ export const updateUser = asyncHandler(async (req, res) => {
   );
   res.status(200).json(updateuser);
 });
+
 // @desc    update a new User
 // @route   PUT http://localhost:4000/api/user/update
-// @access  Public
+// @access  Private
 // export const changePassword = asyncHandler(async (req, res) => {
 
 //   if (error) {
@@ -151,6 +161,7 @@ export const changePasswordUser = asyncHandler(async (req, res) => {
 
   res.status(200).json({ message: "change Password successfully" });
 });
+
 
 // @desc    Profile Photo Upload
 // @route   post http://localhost:4000/api/user/profile-photo-upload

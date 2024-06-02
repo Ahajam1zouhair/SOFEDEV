@@ -49,7 +49,7 @@ export default function CardUpdate({
   const stutusMatchFiniched = () => {
     setMatchInput({ ...matchInput, statusMatch: "FINISHED" });
   };
-  console.log(initialTimerState);
+  console.log(matchInput);
   return (
     <div>
       <div className="bg-white rounded-lg shadow-lg flex flex-col">
