@@ -21,7 +21,7 @@ export default function News() {
   }, [page]);
   return (
     <div className="md:px-10">
-      <div className="px-4 md:px-20">
+      <div className="px-4 md:px-20 mb-10">
         {isLoading ? (
           <Loading />
         ) : error ? (

@@ -74,7 +74,6 @@ export default function Router() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
         </Route>
-
         <Route path="/profile" element={<Profile />} />
         <Route path="/UserManagement" element={<UserManagement />} />
       </Routes>
