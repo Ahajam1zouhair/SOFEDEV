@@ -20,7 +20,7 @@ import UserLayout from "../Layouts/UserLayout";
 import MatchsAll from "../pages/Admin/Matchs";
 import UpdateMatch from "../pages/Admin/Update";
 import Matches from "../pages/Matches";
-import Profile from "../components/Profile/profile";
+import Profile from "../components/profile/profile";
 import UserManagement from "../components/UserManagement";
 import Playres from "../pages/Playres";
 import PlayreByName from "../pages/PlayreByName";
