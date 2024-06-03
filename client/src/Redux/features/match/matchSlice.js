@@ -15,6 +15,12 @@ export const matchApiSlice = apiMatch.injectEndpoints({
         method: "GET",
       }),
     }),
+    getMatchsChLeStage: build.mutation({
+      query: (id) => ({
+        url: `/competitions/CL/matches?stage=${id}`,
+        method: "GET",
+      }),
+    }),
     getMatchsScorersChL: build.mutation({
       query: (season) => ({
         url: `/competitions/CL/scorers/?season=${season}`,
@@ -57,6 +63,7 @@ export const {
   useGetMatchsScorersCPByIdMutation,
   useGetStandingsByCPMutation,
   useGetScorersCPBySeasonMutation,
+  useGetMatchsChLeStageMutation,
 } = matchApiSlice;
 
 // winner

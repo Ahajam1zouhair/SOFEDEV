@@ -7,7 +7,6 @@ export default function CradMatchs({ match }) {
   console.log(match);
   return (
     <div>
-      {/* {match && <></>} */}
       <div className="flex flex-wrap justify-center">
         {match && (
           <>

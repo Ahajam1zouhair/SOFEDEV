@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { useGetMatchsChLeByIdMutation } from "../../../Redux/features/match/matchSlice";
+import {
+  useGetMatchsChLeByIdMutation,
+  useGetMatchsChLeStageMutation,
+} from "../../../Redux/features/match/matchSlice";
 import Loading from "../../Loading/Loading";
 import CardMatchCL from "./cardMatchCL";
 
@@ -26,6 +29,7 @@ export default function Matchs() {
     QUARTER_FINALS_2: { stage: "QUARTER_FINALS", leg: 2 },
     SEMI_FINAL_1: { stage: "SEMI_FINALS", leg: 1 },
     SEMI_FINAL_2: { stage: "SEMI_FINALS", leg: 2 },
+    FINAL: { stage: "FINAL", leg: "FINAL" },
   };
 
   const updateStage = (value) => {
@@ -36,16 +40,19 @@ export default function Matchs() {
       setStage("GROUP_STAGE");
     }
   };
-
   const [getMatchsChLeById, { data, isLoading }] =
     useGetMatchsChLeByIdMutation();
+  const [getMatchsChLeStage, { data: match }] = useGetMatchsChLeStageMutation();
 
   useEffect(() => {
-    getMatchsChLeById(selectedOption);
-  }, [getMatchsChLeById, selectedOption]);
-
+    if (typeof selectedOption == "number") {
+      getMatchsChLeById(selectedOption);
+    } else {
+      getMatchsChLeStage(selectedOption);
+    }
+  }, [getMatchsChLeById, getMatchsChLeStage, selectedOption]);
+  console.log(match);
   console.log(data);
-
   return (
     <div className="max-w-screen-xl mx-4 px-2 md:px-8">
       <div className="grid justify-items-end m-4">
@@ -56,12 +63,16 @@ export default function Matchs() {
         >
           {Object.entries(stagesMap).map(([value, { stage }]) => (
             <option key={value} value={value}>
-              {stage} - {value.endsWith("_1") ? "first leg" : "second leg"}
+              {stage + value} - {value.endsWith("_1") ? "first leg" : "second leg"}
             </option>
           ))}
         </select>
       </div>
-      {isLoading ? <Loading /> : <CardMatchCL data={data} stage={stage} />}
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <CardMatchCL data={stage === "FINAL" ? match : data} stage={stage} />
+      )}
     </div>
   );
 }
