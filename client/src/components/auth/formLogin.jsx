@@ -16,11 +16,13 @@ export default function FormLogin({
     <main className="w-full h-screen flex flex-col items-center justify-center px-4">
       <div className="max-w-sm w-full text-gray-600">
         <div className="text-center">
-          <img
-            src="https://floatui.com/logo.svg"
-            width={150}
-            className="mx-auto"
-          />
+          <a href="javascript:void(0)">
+            <img
+              src="https://www.cisex.org/sites/default/files/2023-02/Sofascore-01-1.png"
+              className="w-24 h-16 mx-auto"
+              alt="Float UI logo"
+            />
+          </a>
           <div className="mt-5 space-y-2">
             <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">
               Sign up
